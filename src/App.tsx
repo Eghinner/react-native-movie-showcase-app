@@ -1,57 +1,49 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { IGenre } from "./@types/IGenre";
-import { IMovie } from "./@types/IMovie";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { MainStackParamList } from "./@types/Stacks";
 import Genre from "./views/Genre";
 import Home from "./views/Home";
 import Movie from "./views/Movie";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+const MainStack = createNativeStackNavigator<MainStackParamList>();
+
+const MainStackScreen = () => (
+    <MainStack.Navigator
+        screenOptions={{
+            headerTitleAlign: "center",
+            headerShadowVisible: true,
+            animation: "slide_from_right",
+            gestureEnabled: true,
+            animationDuration: 1000, // Only IOS ...fuck
+        }}
+    >
+        <MainStack.Screen name="Home" component={Home} options={{ title: "Movie Genres", gestureEnabled: true }} />
+        <MainStack.Screen name="Genre" component={Genre} options={{ title: "Movies" }} />
+        <MainStack.Screen name="Movie" component={Movie} options={{ title: "" }} />
+    </MainStack.Navigator>
+);
+
+const TabNavigator = createBottomTabNavigator();
 
 const App = () => {
-    const PAGES = {
-        HOME: 1,
-        GENRE: 2,
-        MOVIE: 3,
-    };
-    const [page, setPage] = useState<number>(PAGES.HOME);
-    const [genre, setGenre] = useState<IGenre | undefined>(undefined);
-    const [movie, setMovie] = useState<IMovie | undefined>(undefined);
-    const chooseGenre = (lGenre: IGenre) => {
-        setGenre(lGenre);
-        setPage(PAGES.GENRE);
-    };
-    const chooseMovie = (lMovie: IMovie) => {
-        setMovie(lMovie);
-        setPage(PAGES.MOVIE);
-    };
-    const backToGenres = () => {
-        setMovie(undefined);
-        setPage(PAGES.GENRE);
-    };
-    const backToHome = () => {
-        setMovie(undefined);
-        setGenre(undefined);
-        setPage(PAGES.HOME);
-    };
-    switch (page) {
-        case PAGES.HOME:
-            return <Home chooseGenre={chooseGenre} />;
-        case PAGES.GENRE:
-            return <Genre genre={genre} backToHome={backToHome} chooseMovie={chooseMovie} />;
-        case PAGES.MOVIE:
-            return <Movie backToGenres={backToGenres} movie={movie} />;
-    }
+    return (
+        <NavigationContainer>
+            <TabNavigator.Navigator screenOptions={{ tabBarActiveTintColor: "#000", tabBarInactiveTintColor: "blue" }}>
+                <TabNavigator.Screen
+                    name="Main"
+                    component={MainStackScreen}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: () => <Ionicons name="home-outline" />,
+                    }}
+                />
+                {/* <TabNavigator.Screen name="User" component={User} /> */}
+            </TabNavigator.Navigator>
+        </NavigationContainer>
+    );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        ImageBackground: "linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-    },
-});

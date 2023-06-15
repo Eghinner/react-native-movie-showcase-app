@@ -3,9 +3,9 @@ const isDarkMode = Appearance.getColorScheme() === "dark";
 
 const FontConstants = {
     familyRegular: "sans-serif",
-    sizeTitle: 18,
+    sizeTitle: 25,
     sizeRegular: 14,
-    weightBold: "bold",
+    weightBold: 700,
     weightMid: "600",
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
+import { FontConstants, SizeConstants, ColorConstants } from "../constants/StyleConstants";
 
 interface HeaderProps {
     text?: string;
@@ -9,10 +10,11 @@ const Header = (props: HeaderProps) => {
 };
 const styles = StyleSheet.create({
     title: {
-        fontSize: 25,
+        fontSize: FontConstants.sizeTitle,
         fontWeight: "bold",
-        marginBottom: 25,
-        color: "#E7F6F2",
+        marginBottom: SizeConstants.paddingLarge,
+        color: ColorConstants.text,
+        textAlign: "center",
     },
 });
 

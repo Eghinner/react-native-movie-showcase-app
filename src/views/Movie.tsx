@@ -1,36 +1,23 @@
 import ScrollContainer from "../containers/ScrollContainer";
 import React from "react";
-import { IMovie } from "../@types/IMovie";
-import { Text, StyleSheet, Pressable } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import Header from "../components/Header";
+import { MainStackParamList } from "../@types/Stacks";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-interface MovieProps {
-    movie?: IMovie;
-    backToGenres: () => void;
-}
+type MovieProps = NativeStackScreenProps<MainStackParamList, "Movie">;
 
 const Movie = (props: MovieProps) => (
     <ScrollContainer>
-        <Pressable onPress={() => props.backToGenres()}>
-            <Text style={styles.backButton}>Back to Home</Text>
-        </Pressable>
-        <Header text={props.movie?.title} />
-        <Text style={styles.movieText}>{props.movie?.overview}</Text>
+        <Header text={props.route.params.movie.title} />
+        <Text style={styles.movieText}>{props.route.params.movie.overview}</Text>
     </ScrollContainer>
 );
 
 const styles = StyleSheet.create({
-    backButton: {
-        fontSize: 16,
-        marginBottom: 20,
-        fontWeight: "600",
-        padding: 20,
-        backgroundColor: "#E7F6F2",
-        color: "#2C3333",
-    },
-
     movieText: {
-        color: "#E7F6F2",
+        color: "#2C3333",
+        textAlign: "justify",
     },
 });
 
