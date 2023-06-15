@@ -3,7 +3,8 @@ import ScrollContainer from "../containers/ScrollContainer";
 import React, { useEffect, useState } from "react";
 import { IGenre } from "../@types/IGenre";
 import { StyleSheet, Text, Pressable } from "react-native";
-import Header from "../components/Header";
+import { Header } from "../components";
+import { ColorConstants } from "../constants/StyleConstants";
 
 interface HomeProps {
     chooseGenre: (genre: IGenre) => void;
@@ -34,8 +35,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 5,
         padding: 20,
-        backgroundColor: "#395B64",
-        color: "#E7F6F2",
+        backgroundColor: ColorConstants.primary,
+        color: ColorConstants.text,
     },
 });
 
