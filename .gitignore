@@ -57,3 +57,5 @@ dist/
 # Customized VSC
 .vscode/
 package-lock.json
+
+*.keystore
