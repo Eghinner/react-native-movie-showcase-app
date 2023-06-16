@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
 import { getMovieById } from "../services/movieService";
-import { IMovie } from "../@types/IMovie";
+import type { IMovie } from "../@types/IMovie";
 
 export function useUser() {
     const context = useContext(UserContext);

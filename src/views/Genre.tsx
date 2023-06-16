@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IMovie } from "../@types/IMovie";
 import { StyleSheet, Text, Pressable } from "react-native";
 import { getMovieByGenreId } from "../services/movieService";
-import { MainStackParamList } from "../@types/Stacks";
+import type { MainStackParamList } from "../@types/Stacks";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useUser } from "../hooks/useUser";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -24,7 +24,7 @@ const Genre = (props: GenreProps) => {
             {movies.map((movie) => (
                 <Pressable key={movie.id} onPress={() => props.navigation.navigate("Movie", { movie })}>
                     <Text style={[styles.pressableButton, isFav(movie.id) ? styles.favColor : styles.normalColor]}>
-                        {isFav(movie.id) && <Ionicons name="md-heart" size="50" color="tomato" />}
+                        {isFav(movie.id) && <Ionicons name="md-heart" size={20} color="tomato" />}
                         {movie.title}
                     </Text>
                 </Pressable>

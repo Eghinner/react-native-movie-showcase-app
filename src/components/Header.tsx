@@ -10,7 +10,7 @@ const Header = (props: HeaderProps) => {
 };
 const styles = StyleSheet.create({
     title: {
-        fontSize: FontConstants.sizeTitle,
+        fontSize: 25,
         fontWeight: "bold",
         marginBottom: SizeConstants.paddingLarge,
         color: ColorConstants.text,

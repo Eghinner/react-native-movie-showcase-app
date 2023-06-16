@@ -5,7 +5,7 @@ import { IGenre } from "../@types/IGenre";
 import { StyleSheet, Text, Pressable } from "react-native";
 import { Header } from "../components";
 import { ColorConstants } from "../constants/StyleConstants";
-import { MainStackParamList } from "../@types/Stacks";
+import type { MainStackParamList } from "../@types/Stacks";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 // interface HomeProps {
