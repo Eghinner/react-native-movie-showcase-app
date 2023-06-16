@@ -10,10 +10,10 @@ const FontConstants = {
 };
 
 const ColorConstants = {
-    background: isDarkMode ? "#455A64" : "#CFD8DC",
+    background: isDarkMode ? "#1e1e1e" : "#FFF",
     primary: "#607D8B",
     accentColor: "#607D8B",
-    text: isDarkMode ? "#E7F6F2" : "#212121",
+    text: isDarkMode ? "#fafafa" : "#000",
     secondaryText: "#757575",
     dividerColor: "#BDBDBD",
 };

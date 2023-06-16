@@ -7,6 +7,8 @@ import Movie from "./views/Movie";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { ColorConstants } from "./constants/StyleConstants";
+import { UserProvider } from "./context/UserProvider";
 
 const MainStack = createNativeStackNavigator<MainStackParamList>();
 
@@ -16,8 +18,9 @@ const MainStackScreen = () => (
             headerTitleAlign: "center",
             headerShadowVisible: true,
             animation: "slide_from_right",
-            gestureEnabled: true,
-            animationDuration: 1000, // Only IOS ...fuck
+            headerStyle: { backgroundColor: ColorConstants.background },
+            headerTintColor: ColorConstants.text,
+            // headerTransparent: true,
         }}
     >
         <MainStack.Screen name="Home" component={Home} options={{ title: "Movie Genres", gestureEnabled: true }} />
@@ -30,19 +33,21 @@ const TabNavigator = createBottomTabNavigator();
 
 const App = () => {
     return (
-        <NavigationContainer>
-            <TabNavigator.Navigator screenOptions={{ tabBarActiveTintColor: "#000", tabBarInactiveTintColor: "blue" }}>
-                <TabNavigator.Screen
-                    name="Main"
-                    component={MainStackScreen}
-                    options={{
-                        headerShown: false,
-                        tabBarIcon: () => <Ionicons name="home-outline" />,
-                    }}
-                />
-                {/* <TabNavigator.Screen name="User" component={User} /> */}
-            </TabNavigator.Navigator>
-        </NavigationContainer>
+        <UserProvider>
+            <NavigationContainer>
+                <TabNavigator.Navigator screenOptions={{ tabBarActiveTintColor: "#000", tabBarInactiveTintColor: "blue" }}>
+                    <TabNavigator.Screen
+                        name="Main"
+                        component={MainStackScreen}
+                        options={{
+                            headerShown: false,
+                            tabBarIcon: () => <Ionicons name="home-outline" />,
+                        }}
+                    />
+                    {/* <TabNavigator.Screen name="User" component={User} /> */}
+                </TabNavigator.Navigator>
+            </NavigationContainer>
+        </UserProvider>
     );
 };
 

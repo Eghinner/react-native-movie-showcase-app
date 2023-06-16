@@ -9,11 +9,13 @@ const getGenres = (): Array<IGenre> => {
 const getMovies = (): Array<IMovie> => {
     return movies;
 };
+
+const getMovieById = (movieId: number): IMovie | undefined => {
+    return movies.find((movie) => movie.id === movieId);
+};
+
 const getMovieByGenreId = (genreId: number): Array<IMovie> => {
     return movies.filter((movie) => movie.genre_ids.indexOf(genreId) > -1);
 };
-// const getMovieById = (movieId: number): Promise<IMovie | undefined> => {
 
-// return data;
-//   };
-export { getGenres, getMovies, getMovieByGenreId };
+export { getGenres, getMovies, getMovieByGenreId, getMovieById };

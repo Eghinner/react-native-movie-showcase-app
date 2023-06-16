@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
         backgroundColor: ColorConstants.background,
     },
     contentContainer: {
-        paddingHorizontal: 20,
-        paddingVertical: 40,
+        padding: 20,
     },
 });
 
